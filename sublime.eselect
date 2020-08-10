@@ -4,7 +4,7 @@
 
 DESCRIPTION="Manage the version of Sublime Text linked to /usr/bin/subl"
 MAINTAINER="damnwidget@gmail.com"
-VERSION="1.0"
+VERSION="1.1"
 
 ### get the current version ###
 get_current_version() {
@@ -25,6 +25,7 @@ get_versions() {
 	for file in \
 			"${EROOT}"/opt/sublime_text_2 \
 			"${EROOT}"/opt/sublime_text_3 \
+			"${EROOT}"/opt/sublime_text_4 \
 		; do
 		if [[ -d "${file}" ]]; then
 			echo $(basename "${file}")
@@ -102,7 +103,7 @@ do_set() {
 		local targets=( $(get_versions) )
 		target=${targets[target-1]}
 	fi
-	
+
 	[[ -z ${target} ||  ! -d ${EROOT}/opt/${target} ]] \
 		&& die -q "Target \"$1\" doesn't appear to be valid!"
 
